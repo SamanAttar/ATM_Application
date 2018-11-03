@@ -10,6 +10,29 @@ public class User {
     private byte pinHash[];
 
     ArrayList<Account> accounts;// = new ArrayList<Account>();
-    
+
+    public User(String firstName, String lastName, String pin, Bank Bank) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+
+        try {
+            MessageDigest md  = MessageDigest.getInstance("MD5");
+            this.pinHash = md.digest(pin.getBytes());
+        } catch (NoSuchAlgorithmException e) {
+            System.err.print("Error. Caught the NoSuchAlgorithmException. ");
+            e.printStackTrace();
+            System.exit(1);
+        }
+
+        this.uuid  = Bank.getNewUUID();
+
+        this.accounts = new ArrayList<Account>();
+
+        System.out.println("New User created.");
+        System.out.println("Name: " + this.firstName + " " + this.lastName);
+
+    }
+
+
 
 }
