@@ -3,11 +3,17 @@ import java.util.Random;
 
 public class Bank {
 
-    private String name;
+    private String bankName;
 
     private ArrayList<User> users;
 
     private ArrayList<Account> accounts;
+
+    public Bank(String name){
+        this.bankName = name;
+        this.users = new ArrayList<User>();
+        this.accounts = new ArrayList<Account>();
+    }
 
 
     public String getNewUUID(){
@@ -19,7 +25,7 @@ public class Bank {
         do {
             uuid = "";
             for(int i = 0; i < 6; i++){
-                uuid += ((Integer)r.nextInt(0)).toString();
+                uuid += ((Integer)r.nextInt(10)).toString();
             }
 
             for ( User u : this.users){
@@ -30,7 +36,7 @@ public class Bank {
             }
 
         }
-        while(!unique);
+        while(unique);
 
         return uuid;
     }
@@ -45,7 +51,7 @@ public class Bank {
         do {
             uuid = "";
             for(int i = 0; i < 10; i++){
-                uuid += ((Integer)r.nextInt(0)).toString();
+                uuid += ((Integer)r.nextInt(10)).toString();
             }
 
             for ( Account a : this.accounts){
@@ -55,7 +61,7 @@ public class Bank {
                 }
             }
         }
-        while(!unique);
+        while(unique);
 
         return uuid;
     }
