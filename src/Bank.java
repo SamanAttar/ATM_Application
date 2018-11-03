@@ -64,5 +64,16 @@ public class Bank {
         this.accounts.add(account);
     }
 
+    public User createUser(String firstName, String lastName, String pin){
+        User newUser = new User(firstName, lastName, pin, this);
+        this.users.add(newUser);
+
+        Account newAccount = new Account("Checking", newUser, this);
+        newUser.addAccount(newAccount);
+        this.addAccount(newAccount);
+
+        return newUser;
+    }
+
 }
 
