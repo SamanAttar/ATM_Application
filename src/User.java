@@ -1,3 +1,5 @@
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.security.MessageDigest;
@@ -39,6 +41,19 @@ public class User {
 
     public String getUUID(){
         return this.uuid;
+    }
+
+
+    // Check if pin matches
+    public boolean validatePin(String pin){
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            return MessageDigest.isEqual(md.digest(pin.getBytes()), this.pinHash);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+        return false;
     }
 
 
