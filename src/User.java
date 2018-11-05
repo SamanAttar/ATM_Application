@@ -61,9 +61,18 @@ public class User {
     }
 
     public void printAccountsSummary() {
-        System.out.println("Account Summary: " +  this.firstName);
+        System.out.println("\nAccount Summary for " +  this.firstName + " " + this.lastName);
         for(int i = 0; i < this.accounts.size(); i++)
-            System.out.println(this.accounts.get(i).getSummaryLine());
+            System.out.println(i+1 + " : " + this.accounts.get(i).getSummaryLine());
+    }
+
+    public int getNumberOfAccounts(){
+        return this.accounts.size();
+    }
+
+    public void printAccountTransactionHistory(int accountIndex){
+
+        this.accounts.get(accountIndex).printTransactionHistory();
     }
 
 

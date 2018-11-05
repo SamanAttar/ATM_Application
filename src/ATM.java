@@ -33,15 +33,15 @@ public class ATM {
 
         do{
             System.out.println("\n Welcome to " + bank.getBankName());
-            System.out.println("Enter your ID: ");
+            System.out.print("Enter your ID: ");
             userId = sc.nextLine();
-            System.out.println("Enter your pin: ");
+            System.out.print("Enter your pin: ");
             pin = sc.nextLine();
 
             authUser = bank.userLogin(userId, pin);
 
             if(authUser == null)
-                System.out.println("Inncorrect username/pin combo, please try again ");
+                System.out.println("Incorrect username/pin combo, please try again ");
 
 
         } while(authUser == null);
@@ -55,10 +55,10 @@ public class ATM {
 
         int choice;
 
-
-            System.out.printf("Welcome, " + user.getFirstName() + ". Please select an option");
+        do {
+            System.out.println("\nWelcome, " + user.getFirstName() + ". Please select an option");
             System.out.println(" 1) Show Transaction History");
-            System.out.println(" 2) Withdrawl");
+            System.out.println(" 2) Withdraw");
             System.out.println(" 3) Deposit");
             System.out.println(" 4) Transfer");
             System.out.println(" 5) Quit\n");
@@ -68,6 +68,55 @@ public class ATM {
                 System.out.println("Invalid Choice, select 1 - 5");
             }
 
+            switch(choice) {
+
+                case 1:
+                    ATM.showTransactionHistory(user, sc);
+                    break;
+               /* case 2:
+                    ATM.withdrawFunds(user, sc);
+                    break;
+                case 3:
+                    ATM.depositFunds(user, sc);
+                    break;
+                case 4:
+                    ATM.transferFunds(user, sc);
+                    break;
+                */
+            }
+
+            if ( choice != 5){
+                ATM.printUserMenu(user, sc);
+            }
+
+        }
+        while(choice != 5);
+
+
+    }
+
+
+
+    public static void showTransactionHistory(User user, Scanner sc){
+
+        int account;
+
+        do {
+
+            System.out.println("Enter the number of the account: " + user.getNumberOfAccounts());
+
+            account = sc.nextInt()-1;
+            if(account < 0 || account >= user.getNumberOfAccounts()){
+
+                System.out.println("Invalid Account. Try again.");
+
+            }
+
+
+        }
+        while(account < 0 || account >= user.getNumberOfAccounts());
+
+        user.printAccountTransactionHistory(account);
 
     }
 }
