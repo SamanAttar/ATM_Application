@@ -32,7 +32,7 @@ public class User {
 
         System.out.println("New User created.");
         System.out.println("Name: " + this.firstName + " " + this.lastName);
-
+        System.out.println("User ID: " + this.uuid);
     }
 
     public void addAccount(Account account){
@@ -41,6 +41,10 @@ public class User {
 
     public String getUUID(){
         return this.uuid;
+    }
+
+    public String getFirstName(){
+        return this.firstName;
     }
 
 
@@ -54,6 +58,12 @@ public class User {
             System.exit(1);
         }
         return false;
+    }
+
+    public void printAccountsSummary() {
+        System.out.println("Account Summary: " +  this.firstName);
+        for(int i = 0; i < this.accounts.size(); i++)
+            System.out.println(this.accounts.get(i).getSummaryLine());
     }
 
 

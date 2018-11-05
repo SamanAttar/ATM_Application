@@ -15,6 +15,10 @@ public class Bank {
         this.accounts = new ArrayList<Account>();
     }
 
+    public String getBankName(){
+        return this.bankName;
+    }
+
 
     public String getNewUUID(){
 
